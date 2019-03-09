@@ -8,10 +8,11 @@
             </div>
         </div>
         <div class="category_content">
+            <!-- 渲染商品分类页顶部导航栏 -->
             <div
                 id="sliderSegmentedControl"
                 class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted content_top"
-            >
+             >
                 <div class="mui-scroll inner">
                     <div v-for="(item,i) in categoryTitleData" :key="item.id" :class="['mui-control-item', i===0?'mui-active':'']" @click='postInfoId(item.id)'>
                         <img :src="item.img_url" alt>
@@ -20,6 +21,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 商品列表组件 -->
             <category-list-info :goodsListInfoId = 'nowId'> </category-list-info>
         </div>
     </div>
@@ -115,11 +117,8 @@ export default {
         this.getCategoryTitleData();
     },
     mounted() {
-        // mui.init();
         mui(".mui-scroll-wrapper").scroll({
-            deceleration: 0.0005,
-            scrollY: true,
-            scrollX: true
+            deceleration: 0.0005
         });
     },
     components : {
@@ -129,10 +128,9 @@ export default {
 </script>
 <style lang="less" scoped>
 * {
-    touch-action: pan-x;
+    touch-action: pan-y;
 }
 .category_container {
-    // height: 100%;
     .category_top_container {
         position: fixed;
         top: 0;
@@ -166,23 +164,16 @@ export default {
     .category_content {
         padding: 55px 0 50px;
         background-color: #fff;
-        height: 100%;
         width: 100%;
-        // display: flex;
-        // position: relative;
+        // 商品分类页面的导航栏
         .content_top {
             height: 45px;
-            //   margin-top: 10px;
             .inner {
                 display: flex;
-                // box-shadow: 0 1px 0 rgba(0,0,0,.5);
                 div {
                     display: flex;
                     align-items: center;
                     background-color: #f5f5f5;
-                    //  border-right: 1px solid #ccc;
-                    //  border-bottom: 1px solid #ccc;
-                    //  box-shadow: 1px 1px 0 rgba(0, 0,0,.3);
                     padding: 0;
                    &.mui-active {
                        border: none;
@@ -195,19 +186,14 @@ export default {
                         width: 44px;
                         height: 28px;
                         padding: 0 8px;
-                        //  width: 70%;
                     }
                     span {
                         padding: 0 7px;
                         height: 38px;
-                        // border-right: 1px solid #aaa;
                     }
-                   
                 }
-                
             }
         }
-       
     }
 }
 </style>

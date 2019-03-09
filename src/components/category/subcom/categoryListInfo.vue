@@ -1,6 +1,6 @@
 <template>
     <div class="goodsList_container">
-        <router-link tag='div' v-for="item in goodsListInfoData" :key="item.id"  :to="'/category/goodsInfo/'+item.id">
+        <router-link tag='div' v-for="item in goodsListInfoData" :key="item.id"  :to="'/category/goodsInfo/'+item.id" >
             <img :src="item.img_url" alt>
             <h4>{{ item.info }}</h4>
             <div class="price">
@@ -80,6 +80,7 @@ export default {
     },
     props: ["goodsListInfoId"],
     methods: {
+        //  发送请求获取数据
         getGoodsListInfoData() {
             this.$http.get("category/list/" + this.goodsListInfoId).then(
                 resolve => {
@@ -97,8 +98,9 @@ export default {
         }
     },
     watch :{
-        goodsListInfoId(){
-            this.getGoodsListInfoData()
+        //  监视传入id是否改变，改变则加载对应的商品列表
+        'goodsListInfoId'(){
+            this.getGoodsListInfoData();
         }
     }
 };
